@@ -1,0 +1,48 @@
+.total-hours {
+  display: flex;
+  flex-direction: column;
+}
+
+.total-hours > span {
+  font-family: "Roboto", sans-serif;
+  font-size: 5em;
+  background: linear-gradient(135deg, #90c1f5, #5b9bd5);
+  color: white;
+  padding: 80px;
+  border-radius: 50%;
+  cursor: pointer;
+  z-index: 1;
+  position: relative;
+  display: inline-block;
+  transition: background 0.3s, transform 0.3s, box-shadow 0.3s;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+  text-align: center;
+}
+
+.total-hours > span:hover {
+  background: linear-gradient(135deg, #56e3fa, #9383c5);
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.2);
+}
+
+@media (max-width: 767px) {
+  .total-hours > span {
+    font-size: 3em;
+    padding: 40px;
+    border-radius: 50%;
+    cursor: pointer;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  }
+
+  .total-hours > span:hover {
+    background: linear-gradient(135deg, #56e3fa, #9383c5);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+  }
+
+  .total-hours {
+    align-items: center;
+  }
+
+  .total-hours > span {
+    margin: 0 auto;
+  }
+}
