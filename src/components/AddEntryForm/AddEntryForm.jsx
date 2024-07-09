@@ -2,6 +2,8 @@ import React, { useState, useEffect } from "react";
 import SourceInput from "../SourceInput/SourceInput";
 import "./AddEntryForm.css";
 import MyTimePicker from "../TimePicker/TimePicker";
+import { db, entriesRef } from "../firebase";
+import { push, set } from "firebase/database";
 
 const AddEntryForm = ({ addEntry }) => {
   const getCurrentDate = () => {
@@ -17,16 +19,21 @@ const AddEntryForm = ({ addEntry }) => {
   const [minutes, setMinutes] = useState(0);
   const [source, setSource] = useState("");
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     const totalHours = hours + minutes / 60;
-
-    addEntry({
+    const newEntry = {
       date: date,
       hours: totalHours.toFixed(1),
       source: source || "Nepoznato",
-    });
+      totalHours: totalHours.toFixed(1),
+    };
 
+    const newEntryRef = push(entriesRef);
+
+    await set(newEntryRef, newEntry);
+
+    addEntry(newEntry);
     setDate(getCurrentDate());
     setHours(hours);
     setMinutes(minutes);

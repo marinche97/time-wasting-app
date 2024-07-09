@@ -8,6 +8,9 @@ const ConfettiAnimation = forwardRef((props, ref) => {
     handleMouseDown,
     handleMouseUp,
     handleMouseMove,
+    handleTouchStart,
+    handleTouchEnd,
+    handleTouchMove,
   }));
 
   useEffect(() => {
@@ -37,9 +40,24 @@ const ConfettiAnimation = forwardRef((props, ref) => {
     }
   };
 
-  const spawnConfetti = (x, y) => {
-    if (!isMouseDown) return;
+  const handleTouchStart = (event) => {
+    setIsMouseDown(true);
+    const touch = event.touches[0];
+    spawnConfetti(touch.clientX, touch.clientY);
+  };
 
+  const handleTouchEnd = () => {
+    setIsMouseDown(false);
+  };
+
+  const handleTouchMove = (event) => {
+    if (isMouseDown) {
+      const touch = event.touches[0];
+      spawnConfetti(touch.clientX, touch.clientY);
+    }
+  };
+
+  const spawnConfetti = (x, y) => {
     for (let i = 0; i < 6; i++) {
       createConfetti(x, y);
     }

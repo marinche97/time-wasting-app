@@ -32,6 +32,18 @@ const TotalHours = ({ totalHours }) => {
     }
   };
 
+  const handleTouchStart = (event) => {
+    confettiRef.current.handleTouchStart(event);
+  };
+
+  const handleTouchEnd = (event) => {
+    confettiRef.current.handleTouchEnd(event);
+  };
+
+  const handleTouchMove = (event) => {
+    confettiRef.current.handleTouchMove(event);
+  };
+
   return (
     <div className="total-hours">
       <ConfettiAnimation ref={confettiRef} />
@@ -40,6 +52,9 @@ const TotalHours = ({ totalHours }) => {
         onMouseDown={handleMouseDown}
         onMouseUp={handleMouseUp}
         onMouseMove={handleMouseMove}
+        onTouchStart={handleTouchStart}
+        onTouchEnd={handleTouchEnd}
+        onTouchMove={handleTouchMove}
       >
         {totalHours} h
       </span>
